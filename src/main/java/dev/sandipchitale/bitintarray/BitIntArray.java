@@ -56,7 +56,7 @@ public class BitIntArray {
             throw new IndexOutOfBoundsException("Index " + index + " out of bounds for size " + size);
         }
         int intIndex = index / Integer.SIZE;
-        int bitIndex = Integer.SIZE - (index % Integer.SIZE) - 1;
+        int bitIndex = Integer.SIZE - (index % Integer.SIZE) - 1; // 0-based index from left
         if (value) {
             bitIntArray[intIndex] |= 1 << bitIndex;
         } else {
@@ -75,7 +75,7 @@ public class BitIntArray {
             throw new IndexOutOfBoundsException("Index " + index + " out of bounds for size " + size);
         }
         int intIndex = index / Integer.SIZE;
-        int bitIndex = Integer.SIZE - (index % Integer.SIZE) - 1;
+        int bitIndex = Integer.SIZE - (index % Integer.SIZE) - 1; // 0-based index from left
         return (bitIntArray[intIndex] & (1 << bitIndex)) != 0;
     }
 
@@ -100,7 +100,7 @@ public class BitIntArray {
             boolean last = i == bitIntArray.length - 1;
             bits.append(toBinaryString(bitIntArray[i], (last ? (size % Integer.SIZE) : Integer.SIZE)));
             if (!last) {
-                bits.append(" ");
+                bits.append(" "); // separate with a space
             }
         }
         String bitsString = bits.toString();

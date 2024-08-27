@@ -1,6 +1,4 @@
-# 
-
-
+# A simple implementation of a BitIntArray.
 
 # Getting Started
 

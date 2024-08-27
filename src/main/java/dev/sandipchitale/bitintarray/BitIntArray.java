@@ -108,6 +108,48 @@ public class BitIntArray {
     }
 
     /**
+     * Return the number of bits that are set.
+     *
+     * @return the number of bits that are set
+     */
+    public int setBits() {
+        int count = 0;
+        for (int i = 0; i < bitIntArray.length; i++) {
+            if (isSet(i)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Return true of some number of bits are set.
+     *
+     * @return true of some number of bits are set, else false
+     */
+    public boolean someBitsSet() {
+        return setBits() > 0;
+    }
+
+    /**
+     * Return true if no bits are set.
+     *
+     * @return true if no bits are set, else false
+     */
+    public boolean noBitsSet() {
+        return setBits() == 0;
+    }
+
+    /**
+     * Return true if all bits are set.
+     *
+     * @return true if all bits are set, else false
+     */
+    public boolean allBitsSet() {
+        return setBits() == size;
+    }
+
+    /**
      * Return a string representation of the bits stored in an int.
      * All <code>Integer.SIZE</code> bits are shown.
      *

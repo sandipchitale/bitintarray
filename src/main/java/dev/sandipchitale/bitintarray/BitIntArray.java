@@ -58,13 +58,21 @@ public class BitIntArray {
         int bitIndex = Integer.SIZE - (index % Integer.SIZE) - 1;
         return (bitIntArray[intIndex] & (1 << bitIndex)) != 0;
     }
-
     public String allBits() {
-        StringBuilder sb = new StringBuilder();
+        return allBits(false);
+    }
+
+    public String allBits(boolean indicateBits) {
+        StringBuilder bits = new StringBuilder();
         for (int i = 0; i < bitIntArray.length; i++) {
-            sb.append(toBinaryString(bitIntArray[i], (i == bitIntArray.length - 1 ? (size % Integer.SIZE) : Integer.SIZE))).append(" ");
+            boolean last = i == bitIntArray.length - 1;
+            bits.append(toBinaryString(bitIntArray[i], (last ? (size % Integer.SIZE) : Integer.SIZE)));
+            if (!last) {
+                bits.append(" ");
+            }
         }
-        return sb.toString().trim();
+        String bitsString = bits.toString();
+        return bitsString + (indicateBits ? "\n" + bitsString.replace("0", " ").replace("1", "^") : "");
     }
 
     private static String toBinaryString(int i) {

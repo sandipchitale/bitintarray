@@ -16,20 +16,22 @@ public class BitintarrayApplication {
 	public CommandLineRunner clr() {
 		return (String... args) -> {
 
-			BitIntArray bitIntArray = new BitIntArray(8);
+			BitIntArray bitIntArray = new BitIntArray(40);
 			System.out.println(bitIntArray.allBits());
 
-			int which = 7;
+			bitIntArray.set(3);
+
+			int which = 39;
 			bitIntArray.set(which);
-			System.out.println(bitIntArray.allBits());
+			System.out.println(bitIntArray.allBits(true));
 			System.out.println(bitIntArray.isSet(which));
 
 			bitIntArray.flip(which);
-			System.out.println(bitIntArray.allBits());
+			System.out.println(bitIntArray.allBits(true));
 			System.out.println(bitIntArray.isSet(which));
 
 			bitIntArray.flip(which);
-			System.out.println(bitIntArray.allBits());
+			System.out.println(bitIntArray.allBits(true));
 			System.out.println(bitIntArray.isSet(which));
 		};
 	}

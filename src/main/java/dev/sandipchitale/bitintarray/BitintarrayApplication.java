@@ -23,16 +23,16 @@ public class BitintarrayApplication {
 
 			int which = 39;
 			bitIntArray.set(which);
-			System.out.println(bitIntArray.allBits(true));
-			System.out.println("" + which + " bit is " + bitIntArray.isSet(which));
+			System.out.println(bitIntArray.allBits());
+			System.out.println(which + " bit is " + bitIntArray.isSet(which));
 
 			bitIntArray.flip(which);
-			System.out.println(bitIntArray.allBits(true));
-			System.out.println("" + which + " bit is " + bitIntArray.isSet(which));
+			System.out.println(bitIntArray.allBits());
+			System.out.println(which + " bit is " + bitIntArray.isSet(which));
 
 			bitIntArray.flip(which);
-			System.out.println(bitIntArray.allBits(true));
-			System.out.println("" + which + " bit is " + bitIntArray.isSet(which));
+			System.out.println(bitIntArray.allBits());
+			System.out.println(which + " bit is " + bitIntArray.isSet(which));
 		};
 	}
 }

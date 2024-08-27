@@ -15,29 +15,43 @@ public class BitIntArray {
 
     public BitIntArray(int size) {
         this.size = size;
-        bitIntArray = new int[this.size / Integer.SIZE + 1];
+        bitIntArray = new int[this.size / Integer.SIZE + 1]; // to include the last stretch
     }
 
     public int getSize() {
-        return size;
+        return size; // return the size of the array
     }
 
-    public boolean set(int index) {
+    /**
+     * Set the bit at the given index.
+     *
+     * @param index the zero-based index of the bit to set
+     */
+    public void set(int index) {
         _set(index, true);
-        return true;
     }
 
-    public boolean unset(int index) {
+    /**
+     * Unset the bit at the given index.
+     *
+     * @param index the zero-based index of the bit to unset
+     */
+    public void unset(int index) {
         _set(index, false);
-        return false;
     }
 
+    /**
+     * Flip the bit at the given index.
+     *
+     * @param index the zero-based index of the bit to flip
+     * @return the new value of the bit
+     */
     public boolean flip(int index) {
         _set(index, !isSet(index));
         return isSet(index);
     }
 
-    public void _set(int index, boolean value) {
+    private void _set(int index, boolean value) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index " + index + " out of bounds for size " + size);
         }
@@ -50,6 +64,12 @@ public class BitIntArray {
         }
     }
 
+    /**
+     * Check if the bit at the given index is set.
+     *
+     * @param index the zero-based index of the bit to check
+     * @return true if the bit is set, false otherwise
+     */
     public boolean isSet(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index " + index + " out of bounds for size " + size);
@@ -58,10 +78,22 @@ public class BitIntArray {
         int bitIndex = Integer.SIZE - (index % Integer.SIZE) - 1;
         return (bitIntArray[intIndex] & (1 << bitIndex)) != 0;
     }
+
+    /**
+     * Return a string representation of the bits in the array.
+     *
+     * @return a string representation of the bits in the array
+     */
     public String allBits() {
         return allBits(false);
     }
 
+    /**
+     * Return a string representation of the bits in the array.
+     *
+     * @param indicateBits if true, indicate the bits that are set with a caret (^) in the next line
+     * @return a string representation of the bits in the array
+     */
     public String allBits(boolean indicateBits) {
         StringBuilder bits = new StringBuilder();
         for (int i = 0; i < bitIntArray.length; i++) {
@@ -75,11 +107,24 @@ public class BitIntArray {
         return bitsString + (indicateBits ? "\n" + bitsString.replace("0", " ").replace("1", "^") : "");
     }
 
+    /**
+     * Return a string representation of the bits stored in an int.
+     * All <code>Integer.SIZE</code> bits are shown.
+     *
+     * @return a string representation of the bits stored in an int.
+     */
     private static String toBinaryString(int i) {
         return toBinaryString(i, Integer.SIZE);
     }
 
-    private static String toBinaryString(int i, int mask) {
-        return String.format("%32s", Integer.toBinaryString(i)).replace(' ', '0').substring(0, mask);
+    /**
+     * Return a string representation of the leftmost <code>leftBits</code> bits stored in an int.
+     *
+     * @param i        the int to convert to binary string
+     * @param leftBits the number of leftmost bits to show
+     * @return a string representation of the leftmost <code>leftBits</code> bits stored in an int.
+     */
+    private static String toBinaryString(int i, int leftBits) {
+        return String.format("%32s", Integer.toBinaryString(i)).replace(' ', '0').substring(0, leftBits);
     }
 }

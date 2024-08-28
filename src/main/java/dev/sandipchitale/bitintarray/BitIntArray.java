@@ -91,10 +91,10 @@ public class BitIntArray {
     /**
      * Return a string representation of the bits in the array.
      *
-     * @param indicateBits if true, indicate the bits that are set with a caret (^) in the next line
+     * @param indicateSetBits if true, indicate the bits that are set with a caret (^) in the next line
      * @return a string representation of the bits in the array
      */
-    public String allBits(boolean indicateBits) {
+    public String allBits(boolean indicateSetBits) {
         StringBuilder bits = new StringBuilder();
         for (int i = 0; i < bitIntArray.length; i++) {
             boolean last = i == bitIntArray.length - 1;
@@ -104,7 +104,7 @@ public class BitIntArray {
             }
         }
         String bitsString = bits.toString();
-        return bitsString + (indicateBits ? "\n" + bitsString.replace("0", " ").replace("1", "^") : "");
+        return bitsString + (indicateSetBits ? "\n" + bitsString.replace('0', ' ').replace('1', '^') : "");
     }
 
     /**
